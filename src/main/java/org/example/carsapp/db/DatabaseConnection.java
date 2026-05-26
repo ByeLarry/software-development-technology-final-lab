@@ -14,7 +14,7 @@ public class DatabaseConnection {
 
 	private static final String URL = getEnv("DB_URL");
 	private static final String USER = getEnv("DB_USER");
-	private static final String PASSWORD = getEnv("DB_PASSWORD");
+	private static final String PASSWORD = getEnv("DB_PAS");
 
 	public Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(URL, USER, PASSWORD);
