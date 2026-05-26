@@ -1,0 +1,94 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "model" {
+    class Car {
+        - int id
+        - String brandName
+        - String modelName
+        - String bodyTypeName
+        - String fuelTypeName
+        - String transmissionName
+        - String color
+        - int productionYear
+        - double price
+        - int mileage
+        - boolean available
+    }
+
+    class DictionaryItem {
+        - int id
+        - String name
+    }
+}
+
+package "db" {
+    class DatabaseConnection {
+        + Connection getConnection()
+    }
+}
+
+package "repository" {
+    class CarRepository {
+        - DatabaseConnection databaseConnection
+        + List<Car> findAll()
+        + void addCar(...)
+        + void deleteById(int id)
+    }
+
+    class DictionaryRepository {
+        - DatabaseConnection databaseConnection
+        + List<DictionaryItem> findBrands()
+        + List<DictionaryItem> findModels()
+        + List<DictionaryItem> findBodyTypes()
+        + List<DictionaryItem> findFuelTypes()
+        + List<DictionaryItem> findTransmissions()
+    }
+}
+
+package "service" {
+    class CarService {
+        - CarRepository carRepository
+        + List<Car> getAllCars()
+        + void addCar(...)
+        + void deleteCar(int id)
+    }
+}
+
+package "controller" {
+    class MainController {
+        - CarService carService
+        + void initialize()
+        + void onRefreshClick()
+        + void onAddClick()
+        + void onDeleteClick()
+    }
+
+    class AddCarController {
+        - CarService carService
+        + void initialize()
+        + void onSaveClick()
+        + void onCancelClick()
+    }
+}
+
+class CarsApplication {
+    + void start(Stage stage)
+    + static void main(String[] args)
+}
+
+DatabaseConnection <-- CarRepository
+DatabaseConnection <-- DictionaryRepository
+CarRepository <-- CarService
+CarService <-- MainController
+CarService <-- AddCarController
+DictionaryRepository <-- AddCarController
+
+CarRepository --> Car
+DictionaryRepository --> DictionaryItem
+MainController --> Car
+AddCarController --> DictionaryItem
+CarsApplication --> MainController
+CarsApplication --> AddCarController
+
+@enduml

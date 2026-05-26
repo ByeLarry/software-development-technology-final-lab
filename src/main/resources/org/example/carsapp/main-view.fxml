@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.carsapp.controller.MainController">
+
+    <top>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Button text="Обновить" onAction="#onRefreshClick"/>
+            <Button text="Добавить" onAction="#onAddClick"/>
+            <Button text="Удалить" onAction="#onDeleteClick"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="carsTable">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="brandColumn" text="Марка" prefWidth="120"/>
+                <TableColumn fx:id="modelColumn" text="Модель" prefWidth="120"/>
+                <TableColumn fx:id="bodyTypeColumn" text="Кузов" prefWidth="100"/>
+                <TableColumn fx:id="fuelTypeColumn" text="Топливо" prefWidth="100"/>
+                <TableColumn fx:id="transmissionColumn" text="КПП" prefWidth="120"/>
+                <TableColumn fx:id="colorColumn" text="Цвет" prefWidth="100"/>
+                <TableColumn fx:id="yearColumn" text="Год" prefWidth="80"/>
+                <TableColumn fx:id="priceColumn" text="Цена" prefWidth="100"/>
+                <TableColumn fx:id="mileageColumn" text="Пробег" prefWidth="100"/>
+                <TableColumn fx:id="availableColumn" text="Доступен" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>
